@@ -85,7 +85,7 @@ app.post("/login", async (req, res) => {
   const userSnapshot = await userRef.get();
 
   if (!userSnapshot.exists) {
-    res.json({ status: false, message: "Usuário não encontrado" });
+    return res.json({ status: false, message: "Usuário não encontrado" });
   }
 
   const userData = userSnapshot.data();
