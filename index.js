@@ -5,6 +5,7 @@ const admin = require("firebase-admin");
 const { getFirestore } = require("firebase-admin/firestore");
 const cors = require("cors");
 const app = express();
+const server = require("http").createServer(app);
 const PORT = process.env.PORT || 5000;
 
 const serviceAccount = require("./auto-spreadsheets-9d3d0-firebase-adminsdk-4qvon-7a1893000f.json");
@@ -100,6 +101,6 @@ app.post("/login", async (req, res) => {
   res.json({ status: true, userData });
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Rodando na porta --> ${PORT}`);
 });
