@@ -16,6 +16,10 @@ const db = getFirestore();
 
 app.use(express.json());
 
+app.get("/", async (req, res) => {
+  res.json({ message: "Ok" });
+});
+
 app.post("/register", async (req, res) => {
   const { userName, email, password, roles } = req.body;
 
