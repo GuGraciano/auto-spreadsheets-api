@@ -16,11 +16,24 @@ admin.initializeApp({
 const db = getFirestore();
 
 app.use(express.json());
-app.use(
-  cors({
-    origin: "*",
-  })
-);
+app.use(cors());
+
+app.use(function (req, res, next) {
+  var data = "";
+  req.setEncoding("utf8");
+  req.on("data", function (chunk) {
+    data += chunk;
+  });
+
+  req.on("end", function () {
+    req.body = data;
+    next();
+  });
+});
+
+app.use((req, res, next) => {
+  return next();
+});
 
 app.get("/", async (req, res) => {
   res.json({ message: "Ok" });
