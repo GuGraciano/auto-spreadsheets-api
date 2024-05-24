@@ -16,13 +16,15 @@ admin.initializeApp({
 const db = getFirestore();
 
 const corsOptions = {
-  origin: "*",
+  origin: "https://auto-spreadsheets-website.vercel.app", // Allow only this origin
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   optionsSuccessStatus: 204,
 };
 
 app.use(cors(corsOptions));
+
+app.options("*", cors(corsOptions)); // Preflight requests handling
 app.use(express.json());
 
 app.get("/", async (req, res) => {
