@@ -3,7 +3,7 @@ const router = require("express").Router();
 
 router.post("/register", async (req, res) => {
   const { userName, email, password, roles } = req.body;
-  const db = req.db; // Access Firestore instance from request object
+  const db = req.db;
 
   const userRef = db.collection("users").doc(userName);
 
@@ -41,7 +41,7 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const { userName, email, password } = req.body;
-  const db = req.db; // Access Firestore instance from request object
+  const db = req.db;
   let userRef = db.collection("users");
 
   if (userName) {

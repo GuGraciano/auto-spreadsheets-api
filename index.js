@@ -16,16 +16,16 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
 
-const db = getFirestore(); // Initialize Firestore here
+const db = getFirestore();
 
 app.use(cors());
 
-app.use(express.json()); // Middleware to parse JSON request bodies
+app.use(express.json());
 
 app.use(
   "/api",
   (req, res, next) => {
-    req.db = db; // Attach Firestore instance to request object
+    req.db = db;
     next();
   },
   api
